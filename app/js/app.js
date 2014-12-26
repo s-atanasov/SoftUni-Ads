@@ -10,6 +10,9 @@ var app = angular.module('softUniAds', ['ngRoute'])
 		$routeProvider.when('/login', {
 			templateUrl: 'templates/login.html'
 		});
+		$routeProvider.otherwise({
+			redirectTo : '/ads'
+		});
 	});
 
 
