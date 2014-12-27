@@ -17,11 +17,33 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <img src="" ng-src="{{ad.imageDataUrl}}" />
                             </div>
-                            <div class="col-md-8">
-
+                            <div class="col-md-7">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        {{ad.text}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">Name</div>
+                                    <div class="col-md-10 well well-sm">
+                                        {{ad.ownerName}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">Email</div>
+                                    <div class="col-md-10 well well-sm">
+                                        {{ad.ownerEmail}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">Tel.</div>
+                                    <div class="col-md-10 well well-sm">
+                                        {{ad.ownerPhone}}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -29,7 +51,27 @@
             </ul>
         </div>
         <div class="col-md-3">
-            filters
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Categories</h3>
+                </div>
+                <div class="panel-body" >
+                    <a href="#" class="btn btn-link"  ng-click="CategoryFilter(0)">All Categories</a>
+                    <a href="#" class="btn btn-link" ng-repeat="cat in categories" ng-click="CategoryFilter(cat.id)">{{cat.name}}</a>
+                </div>
+
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Towns</h3>
+                </div>
+                <div class="panel-body" >
+                    <a href="#" class="btn btn-link"  ng-click="TownFilter(0)">All Towns</a>
+                    <a href="#" class="btn btn-link" ng-repeat="town in towns" ng-click="TownFilter(town.id)">{{town.name}}</a>
+                </div>
+            </div>
+
         </div>
+
     </div>
 </div>

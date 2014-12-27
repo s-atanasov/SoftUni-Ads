@@ -1,4 +1,4 @@
-var app = angular.module('softUniAds', ['ngRoute'])
+var app = angular.module('softUniAds', ['ngRoute','ui.bootstrap'])
 	.config(function ($routeProvider) {
 		$routeProvider.when('/register', {
 			templateUrl: 'templates/register.html',
