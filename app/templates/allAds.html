@@ -1,6 +1,7 @@
 <div class="jumbotron">
     <div class="row">
         <div class="col-md-9">
+            <h3 ng-show="!data.ads.length">No ads with this criteria ...</h3>
             <ul id="ulAds">
                 <li ng-repeat="ad in data.ads">
                     <div class="container well">
@@ -48,6 +49,12 @@
                         </div>
                     </div>
                 </li>
+            </ul>
+            <ul class="pagination">
+                <li ng-repeat="num in getNumber(pageNums) track by $index" ng-class="{active : ($index+1) == activePage}">
+                    <a href="#" class="active" ng-click="getPage($index + 1,catid,townid)">{{$index + 1}}</a>
+                </li>
+
             </ul>
         </div>
         <div class="col-md-3">
