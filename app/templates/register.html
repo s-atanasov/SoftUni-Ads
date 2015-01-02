@@ -1,28 +1,28 @@
-<form class="form-horizontal">
+<form class="form-horizontal" name="newUserForm">
     <fieldset>
         <legend>User Registration</legend>
         <div class="form-group">
             <label for="inputUsername" class="col-lg-2 control-label">Username</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" ng-model="register.username" id="inputUsername" placeholder="Username">
+                <input type="text" class="form-control" required="required" ng-pattern="/.{3,}/" ng-model="register.username" id="inputUsername" placeholder="Username">
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-error': passwordsError.length}">
             <label for="inputPassword" class="col-lg-2 control-label">Password</label>
             <div class="col-lg-10">
-                <input type="password" class="form-control" ng-model="register.password" id="inputPassword" placeholder="Password">
+                <input type="password" class="form-control" required="required" ng-pattern="/.{3,}/" ng-model="register.password" id="inputPassword" placeholder="Password">
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-error': passwordsError.length}">
             <label for="inputPasswordConfirm" class="col-lg-2 control-label">Confirm Password</label>
             <div class="col-lg-10">
-                <input type="password" class="form-control" ng-model="register.confirmPassword" id="inputPasswordConfirm" placeholder="Confirm Password">
+                <input type="password" class="form-control" ng-pattern="/.{3,}/" ng-match="register.password" ng-model="register.confirmPassword"  id="inputPasswordConfirm" placeholder="Confirm Password">
             </div>
         </div>
         <div class="form-group">
             <label for="inputName" class="col-lg-2 control-label">Name</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" ng-model="register.name" id="inputName" placeholder="Name">
+                <input type="text" class="form-control" required="required" ng-pattern="/.{3,}/" ng-model="register.name" id="inputName" placeholder="Name">
             </div>
         </div>
         <div class="form-group">
@@ -40,14 +40,14 @@
         <div class="form-group">
             <label for="towns" class="col-lg-2 control-label">Town</label>
             <div class="col-lg-10">
-                <select class="form-control" id="towns" ng-model="register.town">
+                <select class="form-control" id="towns" ng-model="register.townid">
                     <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
                 </select>
             </div>
         </div>
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
-                <button type="submit" ng-click="addUser(register)" class="btn btn-primary">Register</button>
+                <button type="submit" ng-click="addUser(register)" ng-disabled="newUserForm.$invalid" class="btn btn-primary">Register</button>
             </div>
         </div>
     </fieldset>

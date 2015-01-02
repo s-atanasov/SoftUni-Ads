@@ -17,10 +17,18 @@
 			<a class="navbar-brand" href="#">SoftUniAds</a>
 		</div>
 		<div class="navbar-collapse collapse navbar-responsive-collapse">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav" ng-show="!accessToken.length">
 				<li><a href="/#login">Login</a></li>
 				<li><a href="/#register">Register</a></li>
 				<li><a href="/#ads">All Ads</a></li>
+			</ul>
+			<ul class="nav navbar-nav" ng-show="accessToken.length">
+				<li><a href="/#ads">Home</a></li>
+				<li><a href="/#ads">My Ads</a></li>
+				<li><a href="/#ads">Publish new Ad</a></li>
+				<li><a href="/#ads">Edit Profile</a></li>
+				<li><a href="/#logout">Logout</a></li>
+				<li>Welcome <strong>{{username}}</strong></li>
 			</ul>
 		</div>
 	</div>
@@ -28,12 +36,17 @@
 	<div ng-view class="container">
 
 	</div>
+
 	<script type="text/javascript" src="lib/angular/angular.js"></script>
 	<script type="text/javascript" src="lib/angular/angular-route.min.js"></script>
+	<script type="text/javascript" src="lib/angular/angular-match.js"></script>
+
 	<script type="text/javascript" src="js/app.js"></script>
 
 	<script type="text/javascript" src="js/controllers/MainController.js"></script>
 	<script type="text/javascript" src="js/controllers/RegisterController.js"></script>
+	<script type="text/javascript" src="js/controllers/LoginController.js"></script>
+	<script type="text/javascript" src="js/controllers/LogoutController.js"></script>
 
 	<script type="text/javascript" src="js/services/MainServices.js"></script>
 	<script type="text/javascript" src="lib/ui-bootstrap-tpls-0.12.0.js"></script>

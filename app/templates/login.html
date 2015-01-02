@@ -1,21 +1,21 @@
-<form class="form-horizontal">
+<form class="form-horizontal" name="loginForm">
     <fieldset>
         <legend>Login</legend>
         <div class="form-group">
             <label for="inputUsername" class="col-lg-2 control-label">Username</label>
             <div class="col-lg-4">
-                <input type="text" class="form-control" required="required" id="inputUsername" placeholder="Username">
+                <input type="text" class="form-control" ng-model="user.username" ng-pattern="/.{3,}/" required="required" id="inputUsername" placeholder="Username">
             </div>
         </div>
         <div class="form-group">
             <label for="inputPassword" class="col-lg-2 control-label">Password</label>
             <div class="col-lg-4">
-                <input type="password" class="form-control" required="required" id="inputPassword" placeholder="Password">
+                <input type="password" class="form-control" ng-model="user.password" ng-pattern="/.{3,}/" required="required" id="inputPassword" placeholder="Password">
             </div>
         </div>
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" ng-click="loginUser(user)" ng-disabled="loginForm.$invalid" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </fieldset>

@@ -86,13 +86,60 @@ app.factory('MainServices', function($http, $log){
             })
     };
 
+    var Register = function(username,password,name,email,phone,townid,success){
+
+        var userData = {
+            Username: username,
+            Password: password,
+            ConfirmPassword: password,
+            Name: name,
+            Email: email,
+            Phone: phone,
+            TownId: townid
+        };
+
+        $http({
+            method : 'POST',
+            url : URL + '/user/Register',
+            data: userData
+        })
+            .success(function(data,status,headers,config){
+                success(data);
+            })
+            .error(function(data,status,headers,config){
+                $log.warn(data);
+            })
+    };
+
+    var Login = function(username,password,success){
+
+        var userData = {
+            Username: username,
+            Password: password
+        };
+
+        $http({
+            method : 'POST',
+            url : URL + '/user/Login',
+            data: userData
+        })
+            .success(function(data,status,headers,config){
+                success(data);
+            })
+            .error(function(data,status,headers,config){
+                $log.warn(data);
+            })
+    };
+
     return{
         getAdsByPage : getAdsByPage,
         getAllAds : getAllAds,
         getAllTowns : getAllTowns,
         getAllCategories : getAllCategories,
         getAdsByCatId : getAdsByCatId,
-        getAdsByTownId : getAdsByTownId
+        getAdsByTownId : getAdsByTownId,
+        Register: Register,
+        Login: Login
     }
 
 });

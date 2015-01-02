@@ -3,6 +3,7 @@ app.controller('MainController',function($scope, MainServices, $http){
     MainServices.getAllAds(function(resp){
         $scope.data = resp;
         $scope.activePage = 1;
+        $scope.activeCatId = 0;
         $scope.catid = 0;
         $scope.townid = 0;
         $scope.pageNums = resp.numPages;
@@ -73,6 +74,8 @@ app.controller('MainController',function($scope, MainServices, $http){
         }
 
     };
+
+
 
 
 });
