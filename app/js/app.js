@@ -1,4 +1,4 @@
-var app = angular.module('softUniAds', ['ngRoute','ui.bootstrap','match'])
+var app = angular.module('softUniAds', ['ngRoute','ui.bootstrap','match','ngResource'])
 	.config(function ($routeProvider) {
 		$routeProvider.when('/register', {
 			templateUrl: 'templates/register.html',
@@ -14,6 +14,13 @@ var app = angular.module('softUniAds', ['ngRoute','ui.bootstrap','match'])
 		$routeProvider.when('/logout', {
 			templateUrl: 'templates/logout.html',
 			controller: 'LogoutController'
+		});
+		$routeProvider.when('/user/home', {
+			templateUrl: 'templates/allAds.html'
+		});
+		$routeProvider.when('/user/ads', {
+			templateUrl: 'templates/userAds.html',
+			controller: 'UserAdsController'
 		});
 		$routeProvider.otherwise({
 			redirectTo : '/ads'

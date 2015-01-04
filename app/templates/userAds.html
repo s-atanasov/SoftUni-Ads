@@ -1,0 +1,80 @@
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-9">
+            <h3 ng-show="!userData.ads.length">No ads with this criteria ...</h3>
+            <ul id="ulAds">
+                <li ng-repeat="ad in userData.ads">
+                    <div class="container well">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <h3 class="pull-left">
+                                    {{ad.title}}
+                                </h3>
+                            </div>
+                            <div class="col-md-4">
+                                <span class="pull-right">
+                                    {{ad.date | date: 'd-MMM-yyyy'}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <img src="" ng-src="{{ad.imageDataUrl}}" />
+                                <h3 ng-show="!ad.imageDataUrl.length">No image available</h3>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        {{ad.text}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">Name</div>
+                                    <div class="col-md-10 well well-sm">
+                                        {{ad.ownerName}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">Email</div>
+                                    <div class="col-md-10 well well-sm">
+                                        {{ad.ownerEmail}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">Tel.</div>
+                                    <div class="col-md-10 well well-sm">
+                                        {{ad.ownerPhone}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="pagination">
+                <li ng-repeat="num in getNumber(pageNums) track by $index" ng-class="{active : ($index+1) == activePage}">
+                    <a href="#" class="active" ng-click="getPage($index + 1,catid,townid)">{{$index + 1}}</a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">My Ads</h3>
+                </div>
+                <div class="panel-body" >
+                    <ul class="nav nav-pills">
+                        <li ng-class="{active : 0 == statusId}" ng-click="StatusFilter(0)"><a href="#" >All</a></li>
+                        <li ng-class="{active : 1 == statusId}" ng-click="StatusFilter(1)"><a href="#">Published</a></li>
+                        <li ng-class="{active : 2 == statusId}" ng-click="StatusFilter(2)"><a href="#">Waiting Approval</a></li>
+                        <li ng-class="{active : 3 == statusId}" ng-click="StatusFilter(3)"><a href="#">Inactive</a></li>
+                        <li ng-class="{active : 4 == statusId}" ng-click="StatusFilter(4)"><a href="#">Rejected</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

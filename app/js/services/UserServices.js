@@ -1,9 +1,12 @@
-app.factory('adsData', function ($resource, $http) {
+app.factory('UserServices', function ($resource, $http) {
 
-    $http.defaults.headers.common['Authorization'] = 'Bearer ';
+
+
+    //var URL = 'http://softuni-ads.azurewebsites.net/api/user/ads/:id';
+    var URL = 'http://localhost:1337/api/user/ads/:id';
 
     var resource = $resource(
-        'http://softuni-ads.azurewebsites.net/api/user/ads/:id',
+        URL,
         {id: '@id'},
         { update: {
             method: 'PUT'

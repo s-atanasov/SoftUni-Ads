@@ -13,7 +13,7 @@ app.controller('RegisterController',function($scope,$location, MainServices, $ht
                 $rootScope.accessToken = resp.access_token;
                 $rootScope.username = resp.username;
 
-                $location.path('/ads');
+                $location.path('/user/home');
 
             });
        }else{

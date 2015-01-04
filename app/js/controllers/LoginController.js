@@ -9,7 +9,7 @@ app.controller('LoginController',function($scope,$location, MainServices, $http,
             $rootScope.accessToken = resp.access_token;
             $rootScope.username = resp.username;
             console.log(resp);
-            $location.path('/ads');
+            $location.path('/user/home');
 
         });
 
