@@ -4,17 +4,53 @@ app.controller('UserAdsController',function($scope,$location, UserServices, $htt
 
     $scope.userData = UserServices.getAll();
 
-    console.log($scope.userData);
-    $scope.pageNums = $scope.userData.numPages;
+
+    $scope.getNumber = function(num) {
+        return new Array(num);
+    }
+
+    $scope.activePage = 1;
+    $scope.statusId = -1;
+
+    $scope.StatusFilter = function(statusId){
+        $scope.statusId = statusId;
+        $scope.activePage = 1;
+        if(statusId == -1){
+            $scope.userData = UserServices.getAll();
+        }else{
+            var statusName = '1' + getStatusName(statusId);
+            $scope.userData = UserServices.getPage(statusName);
+            $scope.catid = id;
+        }
+
+    }
+
+    function getStatusName(statusId){
+        var statusName = '&Status=';
+        switch (statusId){
+            case 1:
+                statusName += 'WaitingApproval';
+                break;
+            case 2:
+                statusName += 'Published';
+                break;
+            case 3:
+                statusName += 'Rejected';
+                break;
+            case 0:
+                statusName += 'Inactive';
+                break;
+        }
+        return statusName;
+    }
 
     $scope.getPage = function(pageNum,statusId){
         $scope.activePage = pageNum;
-        if(statusId != 0){
-            //pageNum = pageNum + '&townid=' + townid;
+        if(statusId != -1){
+            pageNum = pageNum + getStatusName(statusId);
         }
-        //MainServices.getAdsByPage(pageNum,function(resp){
-        //    $scope.data = resp;
-        //});
+        $scope.userData = UserServices.getPage(pageNum);
+
     };
 
 });

@@ -36,15 +36,14 @@ app.controller('MainController',function($scope, MainServices, $http){
 
     $scope.CategoryFilter = function(id){
         $scope.townid = 0;
+        $scope.activePage = 1;
         if(id == 0){
-            $scope.activePage = 1;
             $scope.catid = 0;
             MainServices.getAllAds(function(resp){
                 $scope.data = resp;
                 $scope.pageNums = resp.numPages;
             });
         }else{
-            $scope.activePage = 1;
             $scope.catid = id;
             MainServices.getAdsByCatId(id,function(resp){
                 $scope.data = resp;

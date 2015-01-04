@@ -29,22 +29,26 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-2">Name</div>
-                                    <div class="col-md-10 well well-sm">
-                                        {{ad.ownerName}}
+                                    <div class="col-md-3">Category:</div>
+                                    <div class="col-md-9 well well-sm">
+                                        {{ad.categoryName}}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-2">Email</div>
-                                    <div class="col-md-10 well well-sm">
-                                        {{ad.ownerEmail}}
+                                    <div class="col-md-3">Town:</div>
+                                    <div class="col-md-9 well well-sm">
+                                        {{ad.townName}}
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-2">Tel.</div>
-                                    <div class="col-md-10 well well-sm">
-                                        {{ad.ownerPhone}}
-                                    </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Status:</div>
+                                <div class="col-md-5 well well-sm">
+                                    {{ad.status}}
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="" class="btn">Deactivate</a>
                                 </div>
                             </div>
                         </div>
@@ -52,8 +56,8 @@
                 </li>
             </ul>
             <ul class="pagination">
-                <li ng-repeat="num in getNumber(pageNums) track by $index" ng-class="{active : ($index+1) == activePage}">
-                    <a href="#" class="active" ng-click="getPage($index + 1,catid,townid)">{{$index + 1}}</a>
+                <li ng-repeat="num in getNumber(userData.numPages) track by $index" ng-class="{active : ($index+1) == activePage}">
+                    <a href="" ng-click="getPage($index + 1,statusId)">{{$index + 1}}</a>
                 </li>
 
             </ul>
@@ -65,11 +69,11 @@
                 </div>
                 <div class="panel-body" >
                     <ul class="nav nav-pills">
-                        <li ng-class="{active : 0 == statusId}" ng-click="StatusFilter(0)"><a href="#" >All</a></li>
-                        <li ng-class="{active : 1 == statusId}" ng-click="StatusFilter(1)"><a href="#">Published</a></li>
-                        <li ng-class="{active : 2 == statusId}" ng-click="StatusFilter(2)"><a href="#">Waiting Approval</a></li>
-                        <li ng-class="{active : 3 == statusId}" ng-click="StatusFilter(3)"><a href="#">Inactive</a></li>
-                        <li ng-class="{active : 4 == statusId}" ng-click="StatusFilter(4)"><a href="#">Rejected</a></li>
+                        <li ng-class="{active : -1 == statusId}" ng-click="StatusFilter(-1)"><a href="">All</a></li>
+                        <li ng-class="{active : 2 == statusId}" ng-click="StatusFilter(2)"><a href="">Published</a></li>
+                        <li ng-class="{active : 1 == statusId}" ng-click="StatusFilter(1)"><a href="">Waiting Approval</a></li>
+                        <li ng-class="{active : 0 == statusId}" ng-click="StatusFilter(0)"><a href="">Inactive</a></li>
+                        <li ng-class="{active : 3 == statusId}" ng-click="StatusFilter(3)"><a href="">Rejected</a></li>
                     </ul>
                 </div>
             </div>
