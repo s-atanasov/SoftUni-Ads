@@ -1,5 +1,9 @@
 app.controller('LoginController',function($scope,$location, MainServices, $http,$rootScope){
 
+    if($rootScope.accessToken){
+        $location.path('/user/home');
+    }
+
     $scope.loginUser = function(user){
 
         MainServices.Login(user.username,user.password,function(resp){

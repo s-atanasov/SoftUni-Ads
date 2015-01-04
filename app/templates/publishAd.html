@@ -1,0 +1,45 @@
+<form class="form-horizontal" name="newAdForm">
+    <fieldset>
+        <legend>Publish New Ad</legend>
+        <div class="form-group">
+            <label for="inputTitle" class="col-lg-2 control-label">Title</label>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" ng-model="newAd.title" ng-pattern="/.{2,}/" required="required" id="inputTitle" placeholder="Title">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputText" class="col-lg-2 control-label">Text</label>
+            <div class="col-lg-10">
+                <textarea class="form-control" ng-model="newAd.text" rows="3" required="required" id="inputText"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputImage" class="col-lg-2 control-label">Image</label>
+            <div class="col-lg-4">
+                <input type="file" class="form-control" onchange="angular.element(this).scope().fileChanged(this)" id="inputImage">
+                <div ng-repeat="file in fileName">{{file.name}}</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="categories" class="col-lg-2 control-label">Categories</label>
+            <div class="col-lg-10">
+                <select class="form-control" id="categories" ng-model="newAd.categoryid">
+                    <option ng-repeat="cat in categories" value="{{cat.id}}">{{cat.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="towns" class="col-lg-2 control-label">Town</label>
+            <div class="col-lg-10">
+                <select class="form-control" id="towns" ng-model="newAd.townid">
+                    <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" ng-click="PublishAd(newAd)" ng-disabled="newAdForm.$invalid" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+</form>

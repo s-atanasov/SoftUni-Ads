@@ -44,11 +44,20 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3">Status:</div>
-                                <div class="col-md-5 well well-sm">
+                                <div class="col-md-3 well well-sm">
                                     {{ad.status}}
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4" ng-show="ad.status != 'Inactive'">
                                     <a href="" class="btn">Deactivate</a>
+                                </div>
+                                <div class="col-md-2" ng-show="ad.status == 'Inactive'">
+                                    <a href="" class="btn">Edit</a>
+                                </div>
+                                <div class="col-md-2" ng-show="ad.status == 'Inactive'">
+                                    <a href="" class="btn">Publish Again</a>
+                                </div>
+                                <div class="col-md-2" ng-show="ad.status == 'Inactive'">
+                                    <a href="" class="btn">Delete</a>
                                 </div>
                             </div>
                         </div>

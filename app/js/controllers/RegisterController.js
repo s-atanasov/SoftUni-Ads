@@ -1,8 +1,11 @@
 app.controller('RegisterController',function($scope,$location, MainServices, $http,$rootScope){
 
+    if($rootScope.accessToken){
+        $location.path('/user/home');
+    }
 
    $scope.addUser = function(regInfo){
-        console.log(regInfo);
+
        $scope.passwordsError = '';
        if(regInfo.password == regInfo.confirmPassword){
             MainServices.Register(regInfo.username,regInfo.password,regInfo.name,regInfo.email,regInfo.phone,regInfo.townId,function(resp){

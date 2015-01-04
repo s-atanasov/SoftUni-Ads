@@ -1,5 +1,9 @@
 app.controller('UserAdsController',function($scope,$location, UserServices, $http,$rootScope){
 
+    if(!$rootScope.accessToken){
+        $location.path('/ads');
+    }
+
     $http.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.accessToken;
 
     $scope.userData = UserServices.getAll();
@@ -20,7 +24,6 @@ app.controller('UserAdsController',function($scope,$location, UserServices, $htt
         }else{
             var statusName = '1' + getStatusName(statusId);
             $scope.userData = UserServices.getPage(statusName);
-            $scope.catid = id;
         }
 
     }

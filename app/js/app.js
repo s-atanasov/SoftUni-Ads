@@ -22,6 +22,10 @@ var app = angular.module('softUniAds', ['ngRoute','ui.bootstrap','match','ngReso
 			templateUrl: 'templates/userAds.html',
 			controller: 'UserAdsController'
 		});
+		$routeProvider.when('/user/ads/publish', {
+			templateUrl: 'templates/publishAd.html',
+			controller: 'PublishAdController'
+		});
 		$routeProvider.otherwise({
 			redirectTo : '/ads'
 		});

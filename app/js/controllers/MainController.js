@@ -1,4 +1,8 @@
-app.controller('MainController',function($scope, MainServices, $http){
+app.controller('MainController',function($scope, MainServices, $http,$rootScope,$location){
+
+    if(!$rootScope.accessToken){
+        $location.path('/ads');
+    }
 
     MainServices.getAllAds(function(resp){
         $scope.data = resp;
