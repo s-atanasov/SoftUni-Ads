@@ -56,4 +56,35 @@ app.controller('UserAdsController',function($scope,$location, UserServices, $htt
 
     };
 
+    $scope.Deactivate = function (id) {
+        UserServices.deactivateAd(id);
+        setTimeout(function(){
+            $scope.userData = UserServices.getAll();
+            $scope.activePage = 1;
+        }, 1000);
+    };
+
+    $scope.PublishAgain = function (id) {
+        UserServices.publishAgain(id);
+
+        setTimeout(function(){
+            $scope.userData = UserServices.getAll();
+            $scope.activePage = 1;
+        }, 1000);
+
+
+    };
+
+    $scope.DeleteAd = function (id){
+        var confirmDelete = confirm('Are you sure?');
+        if(confirmDelete){
+            UserServices.delete(id);
+
+            setTimeout(function(){
+                $scope.userData = UserServices.getAll();
+                $scope.activePage = 1;
+            }, 1000);
+        }
+    }
+
 });

@@ -3,10 +3,27 @@ app.factory('UserServices', function ($resource, $http) {
 
 
     //var URL = 'http://softuni-ads.azurewebsites.net/api/user/ads/:id';
-    var URL = 'http://localhost:1337/api/user/ads/:id?PageSize=1';
+    var rootURL = 'http://localhost:1337/api/user/ads';
+    var URL = rootURL + '/:id?PageSize=1';
 
     var resource = $resource(
         URL,
+        {id: '@id'},
+        { update: {
+            method: 'PUT'
+        }
+        });
+
+    var deactivateResource = $resource(
+        rootURL + '/deactivate/:id',
+        {id: '@id'},
+        { update: {
+            method: 'PUT'
+        }
+        });
+
+    var publishAgainResource = $resource(
+        rootURL + '/publishagain/:id',
         {id: '@id'},
         { update: {
             method: 'PUT'
@@ -19,8 +36,16 @@ app.factory('UserServices', function ($resource, $http) {
 
     function getPage(pageNum){
         return $resource(
-            'http://localhost:1337/api/user/ads?PageSize=1&StartPage=' + pageNum
+            rootURL + '?PageSize=1&StartPage=' + pageNum
         ).get();
+    }
+
+    function deactivateAd(id){
+        return deactivateResource.update({id: id});
+    }
+
+    function publishAgain(id){
+        return publishAgainResource.update({id: id});
     }
 
     function createNewAd(ad) {
@@ -45,6 +70,8 @@ app.factory('UserServices', function ($resource, $http) {
         create: createNewAd,
         getById: getAdById,
         edit: editAd,
-        delete: deleteAd
+        delete: deleteAd,
+        deactivateAd: deactivateAd,
+        publishAgain: publishAgain
     }
 });

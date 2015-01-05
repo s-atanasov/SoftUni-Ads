@@ -19,8 +19,8 @@ app.controller('PublishAdController',function($scope,$location,MainServices ,Use
 
     $scope.PublishAd = function(ad){
         console.log(ad);
-        //UserServices.create(ad);
-        //$location.path('/user/ads');
-    }
+        UserServices.create(ad);
+        $location.path('/user/ads');
+    };
 
 });
