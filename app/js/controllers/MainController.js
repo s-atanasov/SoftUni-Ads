@@ -3,7 +3,7 @@ app.controller('MainController',function($scope, MainServices, $http,$rootScope,
     if(!$rootScope.accessToken){
         $location.path('/ads');
     }
-
+    $scope.loadedAds = false;
     MainServices.getAllAds(function(resp){
         $scope.data = resp;
         $scope.activePage = 1;
@@ -11,6 +11,7 @@ app.controller('MainController',function($scope, MainServices, $http,$rootScope,
         $scope.catid = 0;
         $scope.townid = 0;
         $scope.pageNums = resp.numPages;
+        $scope.loadedAds = true;
     });
 
     $scope.getPage = function(pageNum,catid,townid){

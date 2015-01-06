@@ -1,6 +1,7 @@
 <div class="jumbotron">
     <div class="row">
-        <div class="col-md-9">
+        <img src="images/loading.gif" ng-hide="loadedAds">
+        <div class="col-md-9" ng-cloak>
             <h3 ng-show="!data.ads.length">No ads with this criteria ...</h3>
             <ul id="ulAds">
                 <li ng-repeat="ad in data.ads">

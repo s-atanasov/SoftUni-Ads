@@ -3,7 +3,8 @@ app.factory('UserServices', function ($resource, $http) {
 
 
     //var URL = 'http://softuni-ads.azurewebsites.net/api/user/ads/:id';
-    var rootURL = 'http://localhost:1337/api/user/ads';
+    var userURL = 'http://localhost:1337/api/user/';
+    var rootURL = userURL + 'ads';
     var URL = rootURL + '/:id?PageSize=1';
 
     var resource = $resource(
@@ -29,6 +30,12 @@ app.factory('UserServices', function ($resource, $http) {
             method: 'PUT'
         }
         });
+
+    function getUser(){
+        return $resource(
+            userURL + 'profile'
+        ).get();
+    }
 
     function getAllAds() {
         return resource.get();
@@ -72,6 +79,7 @@ app.factory('UserServices', function ($resource, $http) {
         edit: editAd,
         delete: deleteAd,
         deactivateAd: deactivateAd,
-        publishAgain: publishAgain
+        publishAgain: publishAgain,
+        getUser: getUser
     }
 });

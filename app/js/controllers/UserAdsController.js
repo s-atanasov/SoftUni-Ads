@@ -56,20 +56,29 @@ app.controller('UserAdsController',function($scope,$location, UserServices, $htt
 
     };
 
-    $scope.Deactivate = function (id) {
+    $scope.Deactivate = function (pageNum,statusId,id) {
         UserServices.deactivateAd(id);
         setTimeout(function(){
-            $scope.userData = UserServices.getAll();
-            $scope.activePage = 1;
+
+                $scope.activePage = pageNum;
+                if(statusId != -1){
+                    pageNum = pageNum + getStatusName(statusId);
+                }
+                $scope.userData = UserServices.getPage(pageNum);
+
+
         }, 1000);
     };
 
-    $scope.PublishAgain = function (id) {
+    $scope.PublishAgain = function (pageNum,statusId,id) {
         UserServices.publishAgain(id);
 
         setTimeout(function(){
-            $scope.userData = UserServices.getAll();
-            $scope.activePage = 1;
+            $scope.activePage = pageNum;
+            if(statusId != -1){
+                pageNum = pageNum + getStatusName(statusId);
+            }
+            $scope.userData = UserServices.getPage(pageNum);
         }, 1000);
 
 
