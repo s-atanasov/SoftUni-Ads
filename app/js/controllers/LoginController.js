@@ -13,7 +13,7 @@ app.controller('LoginController',function($scope,$location, MainServices, $http,
             sessionStorage.user = JSON.stringify(resp);
             $rootScope.accessToken = resp.access_token;
             $rootScope.username = resp.username;
-            console.log(resp);
+            //console.log(resp);
             $location.path('/user/home');
 
         });
