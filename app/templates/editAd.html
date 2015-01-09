@@ -1,4 +1,54 @@
-<div>
-    sffffdf
-    {{currAd.title}}
-</div>
+<form class="form-horizontal" name="editAdForm">
+    <fieldset>
+        <legend>Edit Ad</legend>
+        <div class="form-group">
+            <label for="inputTitle" class="col-lg-2 control-label">Title</label>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" ng-model="editAd.Title" ng-pattern="/.{2,}/" required="required" id="inputTitle">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputText" class="col-lg-2 control-label">Text</label>
+            <div class="col-lg-10">
+                <textarea class="form-control" ng-model="editAd.Text" rows="3" required="required" id="inputText"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputImage" class="col-lg-2 control-label">Image</label>
+            <div class="col-lg-4">
+                <input type="file" class="form-control" ng-file-select="onFileSelect($files)" id="inputImage">
+                <div>
+                    <b>Preview:</b><br />
+                    <i ng-hide="editAd.imageSrc">No image choosen</i>
+                    <img ng-show="editAd.imageSrc" width="200px" height="200px" ng-src="{{editAd.imageSrc}}" />
+                    <input type="hidden" ng-model="editAd.imageSrc" />
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <button class="btn btn-primary" ng-class="{'btnClicked': changeImage == 1}" ng-click="ChangeImage()">Change Image</button>
+                <button class="btn btn-primary" ng-class="{'btnClicked': deleteImage == 1}" ng-click="DeleteImage()">Delete Image</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="categories" class="col-lg-2 control-label">Categories</label>
+            <div class="col-lg-10">
+                <select class="form-control" id="categories" ng-model="editAd.categoryid">
+                    <option ng-repeat="cat in categories" value="{{cat.id}}">{{cat.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="towns" class="col-lg-2 control-label">Town</label>
+            <div class="col-lg-10">
+                <select class="form-control" id="towns" ng-model="editAd.townid">
+                    <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" ng-click="EditAd(editAd)" ng-disabled="editAdForm.$invalid" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+</form>

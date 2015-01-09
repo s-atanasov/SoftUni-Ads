@@ -1,3 +1,13 @@
 #ulAds{
     list-style: none;
 }
+
+.btnClicked {
+    color: #fff !important;
+    background-color: #36a41e !important;
+    border-color: #204d74 !important;
+}
+
+.btn-primary:focus{
+
+}

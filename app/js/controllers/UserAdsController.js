@@ -8,7 +8,6 @@ app.controller('UserAdsController',function($scope,$location, UserServices, $htt
 
     $scope.userData = UserServices.getAll();
 
-
     $scope.getNumber = function(num) {
         return new Array(num);
     }

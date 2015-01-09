@@ -58,8 +58,18 @@ app.factory('UserServices', function ($resource, $http) {
         return resource.save(ad);
     }
 
-    function getAdById(id) {
-        return resource.get({id: id});
+    function getAdById(id,success,error) {
+        //return resource.get({id: id});
+        $http({
+            method : 'GET',
+            url : rootURL + '/' + id
+        })
+            .success(function(data,status,headers,config){
+                success(data);
+            })
+            .error(function(data,status,headers,config){
+                error(data);
+            })
     }
 
     function editAd(id, ad) {
