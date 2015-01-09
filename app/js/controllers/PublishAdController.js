@@ -1,5 +1,9 @@
 app.controller('PublishAdController',function($scope,$location,MainServices ,UserServices, $http,$rootScope){
 
+    if(!$rootScope.accessToken){
+        $location.path('/ads');
+    }
+
     $http.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.accessToken;
 
     MainServices.getAllTowns(function(resp){

@@ -1,9 +1,10 @@
 <div class="jumbotron">
     <div class="row">
-        <img src="images/loading.gif" ng-hide="loadedAds">
-        <div class="col-md-9" ng-cloak>
-            <h3 ng-show="!data.ads.length">No ads with this criteria ...</h3>
-            <ul id="ulAds">
+
+        <div class="col-md-9">
+            <img src="images/loading.gif" width="200px" height="200px" ng-hide="loadedAds">
+            <ul id="ulAds" ng-show="loadedAds">
+                <h3 ng-show="!data.ads.length">No ads with this criteria ...</h3>
                 <li ng-repeat="ad in data.ads">
                     <div class="container well">
                         <div class="row">
@@ -52,7 +53,7 @@
                     </div>
                 </li>
             </ul>
-            <ul class="pagination">
+            <ul class="pagination" ng-show="loadedAds">
                 <li ng-repeat="num in getNumber(pageNums) track by $index" ng-class="{active : ($index+1) == activePage}">
                     <a href="#" class="active" ng-click="getPage($index + 1,catid,townid)">{{$index + 1}}</a>
                 </li>

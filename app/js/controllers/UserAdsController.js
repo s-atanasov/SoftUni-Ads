@@ -58,6 +58,7 @@ app.controller('UserAdsController',function($scope,$location, UserServices, $htt
 
     $scope.Deactivate = function (pageNum,statusId,id) {
         UserServices.deactivateAd(id);
+        showSuccess('The ad is deactivated successfully');
         setTimeout(function(){
 
                 $scope.activePage = pageNum;
@@ -72,7 +73,7 @@ app.controller('UserAdsController',function($scope,$location, UserServices, $htt
 
     $scope.PublishAgain = function (pageNum,statusId,id) {
         UserServices.publishAgain(id);
-
+        showSuccess('The ad is published again');
         setTimeout(function(){
             $scope.activePage = pageNum;
             if(statusId != -1){
@@ -88,7 +89,7 @@ app.controller('UserAdsController',function($scope,$location, UserServices, $htt
         var confirmDelete = confirm('Are you sure?');
         if(confirmDelete){
             UserServices.delete(id);
-
+            showSuccess('The ad is deleted successfully');
             setTimeout(function(){
                 $scope.userData = UserServices.getAll();
                 $scope.activePage = 1;

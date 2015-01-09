@@ -51,7 +51,7 @@
                                     <a href="" ng-click="Deactivate(activePage,statusId,ad.id)" class="btn">Deactivate</a>
                                 </div>
                                 <div class="col-md-2" ng-show="ad.status == 'Inactive'">
-                                    <a href="" class="btn">Edit</a>
+                                    <a href="#/user/ads/edit/{{ad.id}}" class="btn">Edit</a>
                                 </div>
                                 <div class="col-md-2" ng-show="ad.status == 'Inactive'">
                                     <a href="" ng-click="PublishAgain(activePage,statusId,ad.id)" class="btn">Publish Again</a>

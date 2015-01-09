@@ -104,9 +104,11 @@ app.factory('MainServices', function($http, $log){
             data: userData
         })
             .success(function(data,status,headers,config){
+                showSuccess('Register successfully');
                 success(data);
             })
             .error(function(data,status,headers,config){
+                showError('Please check the provided data')
                 $log.warn(data);
             })
     };
@@ -124,9 +126,11 @@ app.factory('MainServices', function($http, $log){
             data: userData
         })
             .success(function(data,status,headers,config){
+                showSuccess('Login successfully');
                 success(data);
             })
             .error(function(data,status,headers,config){
+                showError('Please check your credentials');
                 $log.warn(data);
             })
     };

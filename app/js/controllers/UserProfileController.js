@@ -1,5 +1,9 @@
 app.controller('UserProfileController',function($scope,$location,MainServices ,UserServices,UserProfileServices, $http,$rootScope){
 
+    if(!$rootScope.accessToken){
+        $location.path('/ads');
+    }
+
     $http.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.accessToken;
 
     MainServices.getAllTowns(function(resp){
@@ -25,11 +29,16 @@ app.controller('UserProfileController',function($scope,$location,MainServices ,U
     };
 
     $scope.UpdateUserPassword = function (userPassword) {
-        console.log(userPassword);
+        //console.log(userPassword);
         $scope.passwordsError = false;
         if(userPassword.newPassword == userPassword.newPasswordConfirm){
+            UserProfileServices.updateUserPassword(userPassword.old,userPassword.newPassword,userPassword.newPasswordConfirm,function(resp){
+                showSuccess('Successfully changed the password');
+            },function(resp){
+                showError('Please check the passwords');
+                //console.log(resp);
+            });
 
-            alert('Success');
         }else{
             $scope.passwordsError = true;
         }

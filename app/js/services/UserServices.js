@@ -1,7 +1,6 @@
 app.factory('UserServices', function ($resource, $http) {
 
 
-
     //var URL = 'http://softuni-ads.azurewebsites.net/api/user/ads/:id';
     var userURL = 'http://localhost:1337/api/user/';
     var rootURL = userURL + 'ads';
