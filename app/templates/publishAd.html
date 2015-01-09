@@ -16,8 +16,13 @@
         <div class="form-group">
             <label for="inputImage" class="col-lg-2 control-label">Image</label>
             <div class="col-lg-4">
-                <input type="file" class="form-control" onchange="angular.element(this).scope().fileChanged(this)" id="inputImage">
-                <div ng-repeat="file in fileName">{{file.name}}</div>
+                <input type="file" class="form-control" id="inputImage">
+                <div>
+                    <b>Preview:</b><br />
+                    <i ng-hide="imageSrc">No image choosen</i>
+                    <img ng-show="imageSrc" width="200px" height="200px" ng-src="{{imageSrc}}" />
+                    <input type="hidden" ng-model="imageSrc" id="hiddeninput" value="{{imageSrc}}" />
+                </div>
             </div>
         </div>
         <div class="form-group">
