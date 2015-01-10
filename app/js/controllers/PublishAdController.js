@@ -1,4 +1,4 @@
-app.controller('PublishAdController',function($scope,$location,MainServices ,UserServices, $http,$rootScope){
+app.controller('PublishAdController',function($scope,$location,FileReaderServices, MainServices ,UserServices, $http,$rootScope){
 
     if(!$rootScope.accessToken){
         $location.path('/ads');
@@ -14,17 +14,30 @@ app.controller('PublishAdController',function($scope,$location,MainServices ,Use
         $scope.categories = resp;
     });
 
-    $scope.fileChanged = function (el){
-        console.log(el.files);
-        $scope.fileName = el.files;
-        $scope.$apply();
-    }
+    $scope.newAd = {
+        title : '',
+        text : '',
+        ImageDataURL : '',
+        categoryid : '',
+        townid : ''
+    };
+
+    $scope.getFile = function () {
+
+        FileReaderServices.readAsDataUrl($scope.file, $scope)
+            .then(function(result) {
+                $scope.newAd.ImageDataURL = result;
+            });
+    };
 
 
     $scope.PublishAd = function(ad){
-        console.log(ad);
         UserServices.create(ad);
-        $location.path('/user/ads');
+        showSuccess('The ad is published successfully');
+        setTimeout(function(){
+            $location.path('/user/ads');
+        }, 500);
+
     };
 
 });

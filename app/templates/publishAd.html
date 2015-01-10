@@ -16,12 +16,12 @@
         <div class="form-group">
             <label for="inputImage" class="col-lg-2 control-label">Image</label>
             <div class="col-lg-4">
-                <input type="file" class="form-control" id="inputImage">
+                <input type="file" class="form-control" ng-file-select="onFileSelect($files)" id="inputImage">
                 <div>
                     <b>Preview:</b><br />
-                    <i ng-hide="imageSrc">No image choosen</i>
-                    <img ng-show="imageSrc" width="200px" height="200px" ng-src="{{imageSrc}}" />
-                    <input type="hidden" ng-model="imageSrc" id="hiddeninput" value="{{imageSrc}}" />
+                    <i ng-hide="newAd.ImageDataURL">No image choosen</i>
+                    <img ng-show="newAd.ImageDataURL" width="200px" height="200px" ng-src="{{newAd.ImageDataURL}}" />
+                    <input type="hidden" ng-model="newAd.ImageDataURL" />
                 </div>
             </div>
         </div>

@@ -68,7 +68,7 @@ app.factory('UserServices', function ($resource, $http) {
                 success(data);
             })
             .error(function(data,status,headers,config){
-                error(data);
+                error(status);
             })
     }
 

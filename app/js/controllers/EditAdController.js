@@ -7,8 +7,6 @@ app.controller('EditAdController',function($scope,$location,FileReaderServices,M
     //console.log($routeParams);
 
     UserServices.getById($routeParams.id,function(resp){
-
-        console.log(resp);
         $scope.editAd = {
             Title : resp.title,
             Text : resp.text,
@@ -16,9 +14,15 @@ app.controller('EditAdController',function($scope,$location,FileReaderServices,M
             categoryid : resp.categoryId,
             townid : resp.townId
         };
-    },function(error){
+    },function(status){
 
-        console.log(error);
+        if(status == 401){
+            showError('You are not authorized');
+        }else if(status == 400){
+            showError('There is not ad with this id');
+        }else{
+            showError('Something went wrong');
+        }
     });
 
     $scope.getFile = function () {
