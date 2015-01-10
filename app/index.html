@@ -22,11 +22,19 @@
 				<li><a href="/#register">Register</a></li>
 				<li><a href="/#ads">All Ads</a></li>
 			</ul>
-			<ul class="nav navbar-nav" ng-show="accessToken.length">
+			<ul class="nav navbar-nav" ng-show="!admin && accessToken.length">
 				<li><a href="/#ads">Home</a></li>
 				<li><a href="/#user/ads">My Ads</a></li>
 				<li><a href="/#user/ads/publish">Publish new Ad</a></li>
 				<li><a href="/#user/profile">Edit Profile</a></li>
+				<li><a href="/#logout">Logout</a></li>
+				<li>Welcome <strong>{{username}}</strong></li>
+			</ul>
+			<ul class="nav navbar-nav" ng-show="admin && accessToken.length">
+				<li><a href="/#admin/home">Ads</a></li>
+				<li><a href="/#admin/users">Users</a></li>
+				<li><a href="/#admin/categories">Categories</a></li>
+				<li><a href="/#admin/towns">Towns</a></li>
 				<li><a href="/#logout">Logout</a></li>
 				<li>Welcome <strong>{{username}}</strong></li>
 			</ul>
@@ -59,11 +67,13 @@
 	<script type="text/javascript" src="js/controllers/PublishAdController.js"></script>
 	<script type="text/javascript" src="js/controllers/UserProfileController.js"></script>
 	<script type="text/javascript" src="js/controllers/EditAdController.js"></script>
+	<script type="text/javascript" src="js/controllers/AdminAdsController.js"></script>
 
 	<script type="text/javascript" src="js/services/MainServices.js"></script>
 	<script type="text/javascript" src="js/services/UserServices.js"></script>
 	<script type="text/javascript" src="js/services/UserProfileServices.js"></script>
 	<script type="text/javascript" src="js/services/FileReaderServices.js"></script>
+	<script type="text/javascript" src="js/services/AdminServices.js"></script>
 
 	<script type="text/javascript" src="lib/ui-bootstrap-tpls-0.12.0.js"></script>
 </body>

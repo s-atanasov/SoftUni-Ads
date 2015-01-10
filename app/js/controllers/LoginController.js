@@ -14,7 +14,17 @@ app.controller('LoginController',function($scope,$location, MainServices, $http,
             $rootScope.accessToken = resp.access_token;
             $rootScope.username = resp.username;
             console.log(resp);
-            $location.path('/user/home');
+            if(resp.isAdmin){
+                console.log('Admin');
+                $rootScope.admin = true;
+                sessionStorage.admin = true;
+                $location.path('/admin/home');
+            }else{
+                $rootScope.admin = false;
+                sessionStorage.admin = false;
+                $location.path('/user/home');
+            }
+
 
         });
 

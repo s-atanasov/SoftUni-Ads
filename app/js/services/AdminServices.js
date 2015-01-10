@@ -1,8 +1,8 @@
-app.factory('MainServices', function($http, $log){
+app.factory('AdminServices', function($http, $log){
 
-    // LIVE - http://softuni-ads.azurewebsites.net/api
-    // DEBUG - http://localhost:1337/api
-    var URL = 'http://localhost:1337/api';
+    // LIVE - http://softuni-ads.azurewebsites.net/api/admin
+    // DEBUG - http://localhost:1337/api/admin
+    var URL = 'http://localhost:1337/api/admin';
 
     var pagesize = 1;
 
@@ -32,32 +32,6 @@ app.factory('MainServices', function($http, $log){
             })
     };
 
-    var getAllTowns = function(success){
-        $http({
-            method : 'GET',
-            url : URL + '/towns?pagesize=' + pagesize
-        })
-            .success(function(data,status,headers,config){
-                success(data);
-            })
-            .error(function(data,status,headers,config){
-                $log.warn(data);
-            })
-    }
-
-    var getAllCategories = function(success){
-        $http({
-            method : 'GET',
-            url : URL + '/categories?pagesize=' + pagesize
-        })
-            .success(function(data,status,headers,config){
-                success(data);
-            })
-            .error(function(data,status,headers,config){
-                $log.warn(data);
-            })
-    }
-
     var getAdsByCatId = function(catid,success){
 
         $http({
@@ -86,64 +60,39 @@ app.factory('MainServices', function($http, $log){
             })
     };
 
-    var Register = function(username,password,name,email,phone,townid,success){
-
-        var userData = {
-            Username: username,
-            Password: password,
-            ConfirmPassword: password,
-            Name: name,
-            Email: email,
-            Phone: phone,
-            TownId: townid
-        };
-
+    var deleteAd = function (id,success) {
         $http({
-            method : 'POST',
-            url : URL + '/user/Register',
-            data: userData
+            method : 'DELETE',
+            url : URL + '/ads/' + id
         })
             .success(function(data,status,headers,config){
-                showSuccess('Register successfully');
                 success(data);
             })
             .error(function(data,status,headers,config){
-                showError('Please check the provided data')
                 $log.warn(data);
             })
     };
 
-    var Login = function(username,password,success){
-
-        var userData = {
-            Username: username,
-            Password: password
-        };
-
+    var approveAd = function (id,success) {
         $http({
-            method : 'POST',
-            url : URL + '/user/Login',
-            data: userData
+            method : 'PUT',
+            url : URL + '/Ads/Approve/' + id
         })
             .success(function(data,status,headers,config){
-                showSuccess('Login successfully');
                 success(data);
             })
             .error(function(data,status,headers,config){
-                showError('Please check your credentials');
                 $log.warn(data);
             })
     };
 
     return{
-        getAdsByPage : getAdsByPage,
         getAllAds : getAllAds,
-        getAllTowns : getAllTowns,
-        getAllCategories : getAllCategories,
+        getAdsByPage: getAdsByPage,
         getAdsByCatId : getAdsByCatId,
         getAdsByTownId : getAdsByTownId,
-        Register: Register,
-        Login: Login
+        deleteAd : deleteAd,
+        approveAd: approveAd
     }
 
 });

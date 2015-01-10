@@ -29,7 +29,7 @@ app.controller('MainController',function($scope, MainServices, $http,$rootScope,
 
     $scope.getNumber = function(num) {
         return new Array(num);
-    }
+    };
 
     MainServices.getAllTowns(function(resp){
         $scope.towns = resp;

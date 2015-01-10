@@ -1,0 +1,149 @@
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-9">
+            <img src="images/loading.gif" width="200px" height="200px" ng-hide="adminData">
+            <ul id="ulAds" ng-show="adminData">
+                <h3 ng-show="!adminData.ads.length">No ads with this criteria ...</h3>
+                <li ng-repeat="ad in adminData.ads">
+                    <div class="container well">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <h3 class="pull-left">
+                                    {{ad.title}}
+                                </h3>
+                            </div>
+                            <div class="col-md-4">
+                                <span class="pull-right">
+                                    {{ad.date | date: 'd-MMM-yyyy'}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <img src="" width="200px" height="200px" ng-hide="!ad.imageDataUrl.length" ng-src="{{ad.imageDataUrl}}" />
+                                <h3 ng-show="!ad.imageDataUrl.length">No image available</h3>
+                                <div class="row">
+                                    <div class="col-lg-12">Status:</div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            {{ad.status}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        {{ad.text}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">Username:</div>
+                                    <div class="col-md-9 well well-sm">
+                                        {{ad.ownerUsername}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">Name:</div>
+                                    <div class="col-md-9 well well-sm">
+                                        {{ad.ownerName}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">Email:</div>
+                                    <div class="col-md-9 well well-sm">
+                                        {{ad.ownerEmail}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">Tel:</div>
+                                    <div class="col-md-9 well well-sm">
+                                        {{ad.ownerPhone}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">Category:</div>
+                                    <div class="col-md-9 well well-sm">
+                                        {{ad.categoryName}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">Town:</div>
+                                    <div class="col-md-9 well well-sm">
+                                        {{ad.townName}}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4" ng-show="ad.status != 'Published'">
+                                <a href="" ng-click="ApproveAd(ad.id)" class="btn">Approve</a>
+                            </div>
+                            <div class="col-md-2" ng-show="ad.status != 'Rejected'">
+                                <a href="" ng-click="RejectAd(ad.id)" class="btn">Reject</a>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="#/admin/ads/edit/{{ad.id}}" class="btn">Edit</a>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="" ng-click="DeleteAd(ad.id)" class="btn">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="pagination">
+                <li ng-repeat="num in getNumber(adminData.numPages) track by $index" ng-class="{active : ($index+1) == activePage}">
+                    <a href="" ng-click="getPage($index + 1,catid,townid,statusId)">{{$index + 1}}</a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">My Ads</h3>
+                </div>
+                <div class="panel-body" >
+                    <ul class="nav nav-pills">
+                        <li ng-class="{active : -1 == statusId}" ng-click="StatusFilter(-1)"><a href="">All</a></li>
+                        <li ng-class="{active : 2 == statusId}" ng-click="StatusFilter(2)"><a href="">Published</a></li>
+                        <li ng-class="{active : 1 == statusId}" ng-click="StatusFilter(1)"><a href="">Waiting Approval</a></li>
+                        <li ng-class="{active : 0 == statusId}" ng-click="StatusFilter(0)"><a href="">Inactive</a></li>
+                        <li ng-class="{active : 3 == statusId}" ng-click="StatusFilter(3)"><a href="">Rejected</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Categories</h3>
+                </div>
+                <div class="panel-body" >
+                    <ul class="nav nav-pills">
+                        <li ng-click="CategoryFilter(0)" ng-class="{active : 0 == catid}"><a href="">All Categories</a></li>
+                        <li ng-repeat="cat in categories" ng-class="{active : cat.id == catid}" ng-click="CategoryFilter(cat.id)"><a href="">{{cat.name}}</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Towns</h3>
+                </div>
+                <div class="panel-body" >
+                    <ul class="nav nav-pills">
+                        <li ng-click="TownFilter(0)" ng-class="{active : 0 == townid}"><a href="" >All Towns</a></li>
+                        <li ng-repeat="town in towns" ng-class="{active : town.id == townid}" ng-click="TownFilter(town.id)"><a href="">{{town.name}}</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

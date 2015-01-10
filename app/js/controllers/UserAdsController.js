@@ -25,7 +25,7 @@ app.controller('UserAdsController',function($scope,$location, UserServices, $htt
             $scope.userData = UserServices.getPage(statusName);
         }
 
-    }
+    };
 
     function getStatusName(statusId){
         var statusName = '&Status=';
