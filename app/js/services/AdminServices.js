@@ -86,13 +86,55 @@ app.factory('AdminServices', function($http, $log){
             })
     };
 
+    var rejectAd = function (id,success) {
+        $http({
+            method : 'PUT',
+            url : URL + '/Ads/Reject/' + id
+        })
+            .success(function(data,status,headers,config){
+                success(data);
+            })
+            .error(function(data,status,headers,config){
+                $log.warn(data);
+            })
+    };
+
+    var getAd = function (id, success) {
+        $http({
+            method : 'GET',
+            url : URL + '/Ads/' + id
+        })
+            .success(function(data,status,headers,config){
+                success(data);
+            })
+            .error(function(data,status,headers,config){
+                $log.warn(data);
+            })
+    };
+
+    var editAd = function (id, success) {
+        $http({
+            method : 'PUT',
+            url : URL + '/Ads/' + id
+        })
+            .success(function(data,status,headers,config){
+                success(data);
+            })
+            .error(function(data,status,headers,config){
+                $log.warn(data);
+            })
+    };
+
     return{
         getAllAds : getAllAds,
         getAdsByPage: getAdsByPage,
         getAdsByCatId : getAdsByCatId,
         getAdsByTownId : getAdsByTownId,
         deleteAd : deleteAd,
-        approveAd: approveAd
+        approveAd: approveAd,
+        rejectAd : rejectAd,
+        getAd : getAd,
+        editAd : editAd
     }
 
 });

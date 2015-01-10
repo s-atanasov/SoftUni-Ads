@@ -152,6 +152,18 @@ app.controller('AdminAdsController',function($scope,$location,AdminServices, Mai
 
     };
 
+    $scope.RejectAd = function (id) {
+
+        AdminServices.rejectAd(id, function (resp) {
+            showSuccess('The ad is rejected successfully');
+            AdminServices.getAllAds(function(resp){
+                $scope.adminData = resp;
+                $scope.activePage = 1;
+            });
+        });
+
+    };
+
 
 
 

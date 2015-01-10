@@ -16,7 +16,7 @@
 			</button>
 			<a class="navbar-brand" href="">SoftUniAds</a>
 		</div>
-		<div class="navbar-collapse collapse navbar-responsive-collapse">
+		<div class="navbar-collapse collapse navbar-responsive-collapse" ng-class="{'blanchedalmond' : admin}">
 			<ul class="nav navbar-nav" ng-show="!accessToken.length">
 				<li><a href="/#login">Login</a></li>
 				<li><a href="/#register">Register</a></li>
@@ -68,6 +68,7 @@
 	<script type="text/javascript" src="js/controllers/UserProfileController.js"></script>
 	<script type="text/javascript" src="js/controllers/EditAdController.js"></script>
 	<script type="text/javascript" src="js/controllers/AdminAdsController.js"></script>
+	<script type="text/javascript" src="js/controllers/AdminEditAdController.js"></script>
 
 	<script type="text/javascript" src="js/services/MainServices.js"></script>
 	<script type="text/javascript" src="js/services/UserServices.js"></script>

@@ -38,6 +38,10 @@ var app = angular.module('softUniAds', ['ngRoute','ui.bootstrap','match','ngReso
 			templateUrl: 'templates/adminAds.html',
 			controller: 'AdminAdsController'
 		});
+		$routeProvider.when('/admin/ads/edit/:id', {
+			templateUrl: 'templates/adminEditAd.html',
+			controller: 'AdminEditAdController'
+		});
 		$routeProvider.otherwise({
 			redirectTo : '/ads'
 		});
