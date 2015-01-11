@@ -129,7 +129,20 @@ app.factory('AdminServices', function($http, $log){
     var getAllUsers = function (success) {
         $http({
             method : 'GET',
-            url : URL + '/Users'
+            url : URL + '/Users?pagesize=3'
+        })
+            .success(function(data,status,headers,config){
+                success(data);
+            })
+            .error(function(data,status,headers,config){
+                $log.warn(data);
+            })
+    };
+
+    var getUsersByPage = function(pageNum,success){
+        $http({
+            method : 'GET',
+            url : URL + '/users?pagesize=3&startpage=' + pageNum
         })
             .success(function(data,status,headers,config){
                 success(data);
@@ -149,7 +162,8 @@ app.factory('AdminServices', function($http, $log){
         rejectAd : rejectAd,
         getAd : getAd,
         editAd : editAd,
-        getAllUsers: getAllUsers
+        getAllUsers: getAllUsers,
+        getUsersByPage : getUsersByPage
     }
 
 });

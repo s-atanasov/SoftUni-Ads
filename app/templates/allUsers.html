@@ -1,8 +1,23 @@
-<div>
-    Hello from all users
-    <ul>
-        <li ng-repeat="user in users.users">
-            {{user.username}}
-        </li>
-    </ul>
+<div class="row">
+    <div class="col-md-2">Username</div>
+    <div class="col-md-2">Name</div>
+    <div class="col-md-2">Email</div>
+    <div class="col-md-2">Phone</div>
+    <div class="col-md-2">Action</div>
 </div>
+<div class="row" ng-repeat="user in users.users">
+    <div class="col-md-2">{{user.username}}</div>
+    <div class="col-md-2">{{user.name}}</div>
+    <div class="col-md-2">{{user.email}}</div>
+    <div class="col-md-2">{{user.phoneNumber}}</div>
+    <div class="col-md-2">
+        <a href="/admin/users/edit/{{user.id}}">Edit</a>
+        <a href="" ng-click="DeleteUser(user.id)">Delete</a>
+    </div>
+</div>
+<ul class="pagination">
+    <li ng-repeat="num in getNumber(pageNums) track by $index" ng-class="{active : ($index+1) == activePage}">
+        <a href="" class="active" ng-click="getPage($index + 1)">{{$index + 1}}</a>
+    </li>
+
+</ul>
