@@ -30,6 +30,29 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="inputUsername" class="col-lg-2 control-label">Username</label>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" ng-model="editAd.ownerUsername" ng-pattern="/.{2,}/" required="required" id="inputUsername">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputDate" class="col-lg-2 control-label">Date</label>
+            <div class="col-lg-4">
+                <input type="datetime" class="form-control" ng-model="editAd.date" value="{{editAd.date | date: 'yyyy-MM-dd' }}" ng-pattern="/.{2,}/" required="required" id="inputDate">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="statuses" class="col-lg-2 control-label">Status</label>
+            <div class="col-lg-10">
+                <select class="form-control" id="statuses" ng-model="editAd.status">
+                    <option value="Published">Published</option>
+                    <option value="WaitingApproval">WaitingApproval</option>
+                    <option value="Inactive">Inactive</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
             <label for="categories" class="col-lg-2 control-label">Categories</label>
             <div class="col-lg-10">
                 <select class="form-control" id="categories" ng-model="editAd.categoryid">

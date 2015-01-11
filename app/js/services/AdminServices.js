@@ -99,10 +99,24 @@ app.factory('AdminServices', function($http, $log){
             })
     };
 
-    var getAd = function (id, success) {
+    var getAd = function (id, success,error) {
         $http({
             method : 'GET',
             url : URL + '/Ads/' + id
+        })
+            .success(function(data,status,headers,config){
+                success(data);
+            })
+            .error(function(data,status,headers,config){
+                error(status);
+            })
+    };
+
+    var editAd = function (id,ad, success) {
+        $http({
+            method : 'PUT',
+            url : URL + '/Ads/' + id,
+            data: ad
         })
             .success(function(data,status,headers,config){
                 success(data);
@@ -112,10 +126,10 @@ app.factory('AdminServices', function($http, $log){
             })
     };
 
-    var editAd = function (id, success) {
+    var getAllUsers = function (success) {
         $http({
-            method : 'PUT',
-            url : URL + '/Ads/' + id
+            method : 'GET',
+            url : URL + '/Users'
         })
             .success(function(data,status,headers,config){
                 success(data);
@@ -134,7 +148,8 @@ app.factory('AdminServices', function($http, $log){
         approveAd: approveAd,
         rejectAd : rejectAd,
         getAd : getAd,
-        editAd : editAd
+        editAd : editAd,
+        getAllUsers: getAllUsers
     }
 
 });

@@ -1,16 +1,19 @@
-app.controller('AdminEditAdController',function($scope,$location,AdminServices, MainServices, $http,$rootScope){
+app.controller('AdminEditAdController',function($scope,$location, $routeParams, AdminServices, MainServices,FileReaderServices, $http,$rootScope){
 
     if(!$rootScope.admin){
         $location.path('/ads');
     }
 
-    UserServices.getById($routeParams.id,function(resp){
+    AdminServices.getAd($routeParams.id,function(resp){
         $scope.editAd = {
             Title : resp.title,
             Text : resp.text,
             imageSrc : resp.imageDataUrl,
             categoryid : resp.categoryId,
-            townid : resp.townId
+            townid : resp.townId,
+            ownerUsername: resp.ownerUsername,
+            date : resp.date,
+            status: resp.status
         };
     },function(status){
 
@@ -72,11 +75,16 @@ app.controller('AdminEditAdController',function($scope,$location,AdminServices, 
             ChangeImage : imageChange,
             ImageDataURL : editAd.imageSrc,
             CategoryId : editAd.categoryid,
-            TownId : editAd.townid
+            TownId : editAd.townid,
+            ownerUsername: editAd.ownerUsername,
+            date : editAd.date,
+            status: editAd.status
         };
 
-        UserServices.edit($routeParams.id,ad);
-        showSuccess("Advertisement edited. Don't forget to submit it for publishing.");
+        AdminServices.editAd($routeParams.id,ad, function (resp) {
+            showSuccess("Advertisement edited.");
+        });
+
 
     };
 
